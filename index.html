@@ -265,7 +265,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
         <div class="section-title">商品复购明细</div>
         <div class="section-badge" id="productRepeatBadge">0 项</div>
       </div>
-      <div class="section-desc">①以销售商品为维度展示累计复购账号数与累计复购率，复购口径为该商品范围内同一账号购买次数&gt;1。<br/>②累计复购账号数与累计复购率不受时间筛选影响，计算公式：累计复购账号数 ÷ 购买账号数 × 100%。<br/>③7天限量星币卡不支持复购，已从本表剔除。</div>
+      <div class="section-desc">①以销售商品为维度展示累计复购账号数与累计复购率，复购口径为该商品范围内同一账号购买次数&gt;1。<br/>②累计复购账号数与累计复购率不受任何筛选影响，计算公式：累计复购账号数 ÷ 购买账号数 × 100%。<br/>③7天限量星币卡不支持复购，已从本表剔除。</div>
       <div style="overflow-x:auto;">
         <table class="data-table" id="productRepeatTable">
           <thead>
@@ -803,13 +803,8 @@ function getProductData(){
 
 // 商品复购明细：累计口径，忽略时间筛选，但随销售部门/客户属性/解决方案/BOSID 联动；忽略「销售商品」自身筛选
 function getProductRepeatData(){
-  return RAW_DATA.filter(r=>{
-    if(filterState.dept.size && !filterState.dept.has(r.dept)) return false;
-    if(filterState.custAttr.size && !filterState.custAttr.has(r.cust_attr)) return false;
-    if(filterState.bosid.size && !filterState.bosid.has(r.bosid)) return false;
-    if(filterState.solution.size && !filterState.solution.has(r.solution)) return false;
-    return true;
-  });
+  // 累计复购账号数与累计复购率不受任何筛选影响，直接返回全量数据
+  return RAW_DATA;
 }
 
 function renderProductRepeatTable(){
