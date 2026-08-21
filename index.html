@@ -365,8 +365,8 @@ function init(){
   initDateDropdown();
   initDropdowns();
   trendChart = echarts.init(document.getElementById('trendChart'));
-  setDateMode('week');   // 进入看板默认按最新周（本周）筛选
-  scheduleRefresh({trend:true, productRepeat:true, repeat:true});  // 初始完整渲染（含趋势图）
+  setDateMode('week');   // 进入看板默认按最新周（本周）筛选（会触发一次 date-only 的 scheduleRefresh，下面同步渲染已覆盖）
+  doRefresh({trend:true, productRepeat:true, repeat:true});  // 初始同步完整渲染，避免依赖 rAF 导致 badge 卡在「加载中」
   window.addEventListener('resize', ()=> trendChart && trendChart.resize());
 }
 
@@ -473,7 +473,7 @@ function getFilteredData(){
 function getFilteredNoDate(){
   return RAW_DATA.filter(r=>{
     if(filterState.dept.size && !filterState.dept.has(r.dept)) return false;
-    if(filterState.custAttr.size && !filterState.cust_attr.has(r.cust_attr)) return false;
+    if(filterState.custAttr.size && !filterState.custAttr.has(r.cust_attr)) return false;
     if(filterState.category.size && !filterState.category.has(r.category)) return false;
     if(filterState.solution.size && !filterState.solution.has(r.solution)) return false;
     if(filterState.bosid.size && !filterState.bosid.has(r.bosid)) return false;
@@ -784,7 +784,7 @@ function getProductData(){
 function getProductRepeatData(){
   return RAW_DATA.filter(r=>{
     if(filterState.dept.size && !filterState.dept.has(r.dept)) return false;
-    if(filterState.custAttr.size && !filterState.cust_attr.has(r.cust_attr)) return false;
+    if(filterState.custAttr.size && !filterState.custAttr.has(r.cust_attr)) return false;
     if(filterState.bosid.size && !filterState.bosid.has(r.bosid)) return false;
     if(filterState.solution.size && !filterState.solution.has(r.solution)) return false;
     return true;
