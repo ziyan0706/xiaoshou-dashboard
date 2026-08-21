@@ -208,30 +208,18 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
       <div class="kpi-mom neutral" id="kpiAmountMoM">环比 —</div>
     </div>
     <div class="kpi-card c4">
-      <div class="kpi-label">渠道客户数</div>
-      <div class="kpi-value" id="kpiChannel">0</div>
-      <div class="kpi-sub">客户属性 = 渠道</div>
-      <div class="kpi-mom neutral" id="kpiChannelMoM">环比 —</div>
-    </div>
-    <div class="kpi-card c5">
-      <div class="kpi-label">直销客户数</div>
-      <div class="kpi-value" id="kpiDirect">0</div>
-      <div class="kpi-sub">客户属性 = 直销</div>
-      <div class="kpi-mom neutral" id="kpiDirectMoM">环比 —</div>
-    </div>
-    <div class="kpi-card c6">
       <div class="kpi-label">首次购买客户数</div>
       <div class="kpi-value" id="kpiFirst">0</div>
       <div class="kpi-sub">首次购买落在周期内</div>
       <div class="kpi-mom neutral" id="kpiFirstMoM">环比 —</div>
     </div>
-    <div class="kpi-card c7">
+    <div class="kpi-card c5">
       <div class="kpi-label">复购客户数</div>
       <div class="kpi-value" id="kpiRepeat">0</div>
       <div class="kpi-sub">历史存在多次购买（不受时间筛选影响）</div>
       <div class="kpi-mom neutral" id="kpiRepeatMoM">环比 —</div>
     </div>
-    <div class="kpi-card c8">
+    <div class="kpi-card c6">
       <div class="kpi-label">复购率</div>
       <div class="kpi-value" id="kpiRepeatRate">0%</div>
       <div class="kpi-sub">复购客户 / 购买客户（按筛选范围，不受时间筛选影响）</div>
@@ -363,7 +351,7 @@ let dateMode = 'day';
 let selectedWeekIdx = -1;
 let trendChart = null;
 
-const SIX_MOM = ['kpiMerchantsMoM','kpiOrdersMoM','kpiAmountMoM','kpiChannelMoM','kpiDirectMoM','kpiFirstMoM'];
+const SIX_MOM = ['kpiMerchantsMoM','kpiOrdersMoM','kpiAmountMoM','kpiFirstMoM'];
 function setSixNeutral(text){ SIX_MOM.forEach(id=>{ const e=document.getElementById(id); e.className='kpi-mom neutral'; e.textContent=text; }); }
 function setRepeatMoMNeutral(){
   ['kpiRepeatMoM','kpiRepeatRateMoM'].forEach(id=>{
@@ -568,8 +556,6 @@ function renderKPIs(data){
   document.getElementById('kpiMerchants').textContent = m.merchants.toLocaleString();
   document.getElementById('kpiOrders').textContent = m.orders.toLocaleString();
   document.getElementById('kpiAmount').textContent = fmtAmount(m.amount);
-  document.getElementById('kpiChannel').textContent = m.channel.toLocaleString();
-  document.getElementById('kpiDirect').textContent = m.direct.toLocaleString();
   document.getElementById('kpiFirst').textContent = m.first.toLocaleString();
   // 复购客户数 / 复购率 不受时间筛选影响（仅受其他维度筛选影响）
   document.getElementById('kpiRepeat').textContent = mNoDate.repeat.toLocaleString();
@@ -604,8 +590,6 @@ function renderMoM(cur){
     setMom('kpiMerchantsMoM', curM.merchants, prevM.merchants, true);
     setMom('kpiOrdersMoM', curM.orders, prevM.orders, true);
     setMom('kpiAmountMoM', curM.amount, prevM.amount, true);
-    setMom('kpiChannelMoM', curM.channel, prevM.channel, true);
-    setMom('kpiDirectMoM', curM.direct, prevM.direct, true);
     setMom('kpiFirstMoM', curM.first, prevM.first, true);
     return;
   }
@@ -627,8 +611,6 @@ function renderMoM(cur){
   setMom('kpiMerchantsMoM', curM.merchants, prevM.merchants, false);
   setMom('kpiOrdersMoM', curM.orders, prevM.orders, false);
   setMom('kpiAmountMoM', curM.amount, prevM.amount, false);
-  setMom('kpiChannelMoM', curM.channel, prevM.channel, false);
-  setMom('kpiDirectMoM', curM.direct, prevM.direct, false);
   setMom('kpiFirstMoM', curM.first, prevM.first, false);
 }
 
