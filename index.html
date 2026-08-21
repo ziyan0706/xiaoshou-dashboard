@@ -190,7 +190,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
 
   <div class="kpi-grid">
     <div class="kpi-card c1">
-      <div class="kpi-label">购买客户数</div>
+      <div class="kpi-label">购买账号数</div>
       <div class="kpi-value" id="kpiMerchants">0</div>
       <div class="kpi-sub">去重 BOSID</div>
       <div class="kpi-mom neutral" id="kpiMerchantsMoM">环比 —</div>
@@ -208,22 +208,28 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
       <div class="kpi-mom neutral" id="kpiAmountMoM">环比 —</div>
     </div>
     <div class="kpi-card c4">
-      <div class="kpi-label">首次购买客户数</div>
-      <div class="kpi-value" id="kpiFirst">0</div>
-      <div class="kpi-sub">首次购买落在周期内</div>
-      <div class="kpi-mom neutral" id="kpiFirstMoM">环比 —</div>
-    </div>
-    <div class="kpi-card c5">
-      <div class="kpi-label">复购客户数</div>
+      <div class="kpi-label">复购账号数</div>
       <div class="kpi-value" id="kpiRepeat">0</div>
       <div class="kpi-sub">历史存在多次购买（不受时间筛选影响）</div>
       <div class="kpi-mom neutral" id="kpiRepeatMoM">环比 —</div>
     </div>
-    <div class="kpi-card c6">
+    <div class="kpi-card c5">
       <div class="kpi-label">复购率</div>
       <div class="kpi-value" id="kpiRepeatRate">0%</div>
-      <div class="kpi-sub">复购客户 / 购买客户（按筛选范围，不受时间筛选影响）</div>
+      <div class="kpi-sub">复购账号 / 购买账号（按筛选范围，不受时间筛选影响）</div>
       <div class="kpi-mom neutral" id="kpiRepeatRateMoM">环比 —</div>
+    </div>
+    <div class="kpi-card c6">
+      <div class="kpi-label">渠道账号数</div>
+      <div class="kpi-value" id="kpiChannel">0</div>
+      <div class="kpi-sub">客户属性=渠道（去重 BOSID）</div>
+      <div class="kpi-mom neutral" id="kpiChannelMoM">环比 —</div>
+    </div>
+    <div class="kpi-card c7">
+      <div class="kpi-label">直销账号数</div>
+      <div class="kpi-value" id="kpiDirect">0</div>
+      <div class="kpi-sub">客户属性=直销（去重 BOSID）</div>
+      <div class="kpi-mom neutral" id="kpiDirectMoM">环比 —</div>
     </div>
   </div>
 
@@ -238,7 +244,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
         <div class="section-title">商品购买明细</div>
         <div class="section-badge" id="productBadge">0 项</div>
       </div>
-      <div class="section-desc">①基于当前筛选范围，以销售商品为维度汇总订单数量、订单金额、购买客户数。<br/>②wai高级版、文字包、图片包为历史成交商品，星元上线后不会再售卖。</div>
+      <div class="section-desc">①基于当前筛选范围，以销售商品为维度汇总订单数量、订单金额、购买账号数。<br/>②wai高级版、文字包、图片包为历史成交商品，星元上线后不会再售卖。</div>
       <div style="overflow-x:auto;">
         <table class="data-table" id="productTable">
           <thead>
@@ -246,7 +252,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
               <th>销售商品</th>
               <th class="num">订单数量</th>
               <th class="num">订单金额</th>
-              <th class="num">购买客户数</th>
+              <th class="num">购买账号数</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -259,13 +265,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
         <div class="section-title">商品复购明细</div>
         <div class="section-badge" id="productRepeatBadge">0 项</div>
       </div>
-      <div class="section-desc">①以销售商品为维度展示累计复购客户数与累计复购率，复购口径为该商品范围内同一客户购买次数&gt;1。<br/>②累计复购客户数与累计复购率不受时间筛选影响，计算公式：累计复购客户数 ÷ 购买客户数 × 100%。<br/>③7天限量星币卡不支持复购，已从本表剔除。</div>
+      <div class="section-desc">①以销售商品为维度展示累计复购账号数与累计复购率，复购口径为该商品范围内同一账号购买次数&gt;1。<br/>②累计复购账号数与累计复购率不受时间筛选影响，计算公式：累计复购账号数 ÷ 购买账号数 × 100%。<br/>③7天限量星币卡不支持复购，已从本表剔除。</div>
       <div style="overflow-x:auto;">
         <table class="data-table" id="productRepeatTable">
           <thead>
             <tr>
               <th>销售商品</th>
-              <th class="num">累计复购客户数</th>
+              <th class="num">累计复购账号数</th>
               <th class="num">累计复购率</th>
             </tr>
           </thead>
@@ -300,10 +306,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
 
   <div class="section">
     <div class="section-head">
-      <div class="section-title">客户复购明细</div>
-      <div class="section-badge" id="repeatBadge">0 个客户</div>
+      <div class="section-title">账号复购明细</div>
+      <div class="section-badge" id="repeatBadge">0 个账号</div>
     </div>
-    <div class="section-desc">①以客户为维度展示首购与复购情况。仅展示存在复购（订单数&gt;1）的客户。<br/>②首购商品 / 首购时间为该客户最早（按提单时间）购买的商品与时间。</div>
+    <div class="section-desc">①以账号为维度展示首购与复购情况。仅展示存在复购（订单数&gt;1）的账号。<br/>②首购商品 / 首购时间为该账号最早（按提单时间）购买的商品与时间。</div>
     <div style="overflow-x:auto;">
       <table class="data-table" id="repeatTable">
         <thead>
@@ -352,7 +358,7 @@ let selectedWeekIdx = -1;
 let trendChart = null;
 let trendModeRendered = null;   // 已渲染的趋势模式，用于判断是否需要整体重建
 
-const SIX_MOM = ['kpiMerchantsMoM','kpiOrdersMoM','kpiAmountMoM','kpiFirstMoM'];
+const SIX_MOM = ['kpiMerchantsMoM','kpiOrdersMoM','kpiAmountMoM','kpiChannelMoM','kpiDirectMoM'];
 function setSixNeutral(text){ SIX_MOM.forEach(id=>{ const e=document.getElementById(id); e.className='kpi-mom neutral'; e.textContent=text; }); }
 function setRepeatMoMNeutral(){
   ['kpiRepeatMoM','kpiRepeatRateMoM'].forEach(id=>{
@@ -558,10 +564,11 @@ function renderKPIs(data){
   document.getElementById('kpiMerchants').textContent = m.merchants.toLocaleString();
   document.getElementById('kpiOrders').textContent = m.orders.toLocaleString();
   document.getElementById('kpiAmount').textContent = fmtAmount(m.amount);
-  document.getElementById('kpiFirst').textContent = m.first.toLocaleString();
-  // 复购客户数 / 复购率 不受时间筛选影响（仅受其他维度筛选影响）
+  // 复购账号数 / 复购率 不受时间筛选影响（仅受其他维度筛选影响）
   document.getElementById('kpiRepeat').textContent = mNoDate.repeat.toLocaleString();
   document.getElementById('kpiRepeatRate').innerHTML = mNoDate.repeatRate.toFixed(1)+'<span style="font-size:16px;font-weight:400;color:#94A3B8;">%</span>';
+  document.getElementById('kpiChannel').textContent = m.channel.toLocaleString();
+  document.getElementById('kpiDirect').textContent = m.direct.toLocaleString();
 
   let periodLabel;
   if(dateMode==='week' && selectedWeekIdx>=0){
@@ -592,7 +599,8 @@ function renderMoM(cur){
     setMom('kpiMerchantsMoM', curM.merchants, prevM.merchants, true);
     setMom('kpiOrdersMoM', curM.orders, prevM.orders, true);
     setMom('kpiAmountMoM', curM.amount, prevM.amount, true);
-    setMom('kpiFirstMoM', curM.first, prevM.first, true);
+    setMom('kpiChannelMoM', curM.channel, prevM.channel, true);
+    setMom('kpiDirectMoM', curM.direct, prevM.direct, true);
     return;
   }
   const sel = [...filterState.date].sort();
@@ -613,7 +621,8 @@ function renderMoM(cur){
   setMom('kpiMerchantsMoM', curM.merchants, prevM.merchants, false);
   setMom('kpiOrdersMoM', curM.orders, prevM.orders, false);
   setMom('kpiAmountMoM', curM.amount, prevM.amount, false);
-  setMom('kpiFirstMoM', curM.first, prevM.first, false);
+  setMom('kpiChannelMoM', curM.channel, prevM.channel, false);
+  setMom('kpiDirectMoM', curM.direct, prevM.direct, false);
 }
 
 function setMom(id, cur, prev, isWeek, isPct=false){
@@ -701,7 +710,7 @@ function renderRepeatTable(data){
   const rows = [];
   for(const b in byBosid){
     const recs = byBosid[b];
-    // 订单数 > 1 即判定为复购客户（不圈定指定商品）
+    // 订单数 > 1 即判定为复购账号（不圈定指定商品）
     if(recs.length <= 1) continue;
     const sorted = recs.slice().sort((x,y)=> String(x.sign_date) < String(y.sign_date) ? -1 : (String(x.sign_date) > String(y.sign_date) ? 1 : 0));
     const firstRec = sorted[0];
@@ -734,7 +743,7 @@ function renderRepeatTable(data){
       '<td>'+r.repeatTimeText+'</td>'+
     '</tr>';
   }).join('');
-  tbody.innerHTML = html || '<tr><td colspan="6" style="text-align:center;color:#94A3B8;">当前筛选范围内暂无复购客户</td></tr>';
+  tbody.innerHTML = html || '<tr><td colspan="6" style="text-align:center;color:#94A3B8;">当前筛选范围内暂无复购账号</td></tr>';
 }
 
 function doRefresh(opts){
