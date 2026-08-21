@@ -727,13 +727,14 @@ function renderRepeatTable(data){
     const firstRec = sorted.filter(r=> r.sign_date===firstDate)
       .sort((a,b)=> (FIRST_PRIORITY[a.category]??99) - (FIRST_PRIORITY[b.category]??99))[0];
     const firstProd = firstRec.category;
-    // 复购商品 = 首购之后后续订单中的商品；次数/时间均按商品聚合
+    // 复购商品 = 除「被选中的首购商品」之外的所有购买（首购当天其余商品、以及之后购买的其它商品均计入复购）
     const reprod = {};
-    for(let i=1;i<sorted.length;i++){
-      const c = sorted[i].category;
+    for(const r of sorted){
+      if(r === firstRec) continue;
+      const c = r.category;
       if(!reprod[c]) reprod[c] = {cnt:0, dates:[]};
       reprod[c].cnt++;
-      reprod[c].dates.push(sorted[i].sign_date);
+      reprod[c].dates.push(r.sign_date);
     }
     const repeatItems = Object.keys(reprod).map(p=>({prod:p, cnt:reprod[p].cnt, dates:[...new Set(reprod[p].dates)].sort()}));
     repeatItems.sort((a,b)=> b.cnt - a.cnt);
