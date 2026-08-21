@@ -286,7 +286,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
       <div class="section-title">客户购买明细</div>
       <div class="section-badge" id="detailBadge">0 条</div>
     </div>
-    <div class="section-desc">展示筛选范围内的客户购买记录，销售部门取「部门」列，店铺名称取「签约主体」，金额取「成交价格」，时间口径为「提单时间」。AI试衣已排除。</div>
+    <div class="section-desc">展示筛选范围内的账号购买记录，销售部门取「部门」列，店铺名称取「签约主体」，金额取「成交价格」，时间口径为「提单时间」。AI试衣已排除。</div>
     <div style="overflow-x:auto;">
       <table class="data-table" id="detailTable">
         <thead>
@@ -306,8 +306,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
 
   <div class="section">
     <div class="section-head">
-      <div class="section-title">账号复购明细</div>
-      <div class="section-badge" id="repeatBadge">0 个账号</div>
+      <div class="section-title">客户复购明细</div>
+      <div class="section-badge" id="repeatBadge">0 个客户</div>
     </div>
     <div class="section-desc">①以账号为维度展示首购与复购情况。仅展示存在复购（订单数&gt;1）的账号。<br/>②首购商品 / 首购时间为该账号最早（按提单时间）购买的商品与时间。</div>
     <div style="overflow-x:auto;">
@@ -699,6 +699,15 @@ function renderDetailTable(data){
   }).join('');
 }
 
+// 首购商品优先级（仅在「最早购买日期」存在多个商品时用于抉择；数值越小越优先）
+//   wai高级版 > 星元底座 > 文字包/图片包 > 充值包/通道对接 > 其他
+const FIRST_PRIORITY = {
+  'wai高级版':0,
+  '星元底座':1,
+  '文字包':2, '图片包':2,
+  '星币充值包-1000':3, '星币充值包-5000':3, '星币充值包-10000':3, '星元通道对接':3
+};
+
 function renderRepeatTable(data){
   const tbody = document.querySelector('#repeatTable tbody');
   const badge = document.getElementById('repeatBadge');
@@ -713,9 +722,11 @@ function renderRepeatTable(data){
     // 订单数 > 1 即判定为复购账号（不圈定指定商品）
     if(recs.length <= 1) continue;
     const sorted = recs.slice().sort((x,y)=> String(x.sign_date) < String(y.sign_date) ? -1 : (String(x.sign_date) > String(y.sign_date) ? 1 : 0));
-    const firstRec = sorted[0];
+    const firstDate = sorted[0].sign_date;
+    // 首购商品：取最早购买日期下的商品；若同一最早日期存在多个商品，按 FIRST_PRIORITY 抉择
+    const firstRec = sorted.filter(r=> r.sign_date===firstDate)
+      .sort((a,b)=> (FIRST_PRIORITY[a.category]??99) - (FIRST_PRIORITY[b.category]??99))[0];
     const firstProd = firstRec.category;
-    const firstDate = firstRec.sign_date;
     // 复购商品 = 首购之后后续订单中的商品；次数/时间均按商品聚合
     const reprod = {};
     for(let i=1;i<sorted.length;i++){
