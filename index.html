@@ -350,6 +350,7 @@ const filterState = {date:new Set(), dept:new Set(FILTER_OPTIONS.dept), custAttr
 let dateMode = 'day';
 let selectedWeekIdx = -1;
 let trendChart = null;
+let trendModeRendered = null;   // 已渲染的趋势模式，用于判断是否需要整体重建
 
 const SIX_MOM = ['kpiMerchantsMoM','kpiOrdersMoM','kpiAmountMoM','kpiFirstMoM'];
 function setSixNeutral(text){ SIX_MOM.forEach(id=>{ const e=document.getElementById(id); e.className='kpi-mom neutral'; e.textContent=text; }); }
@@ -365,6 +366,7 @@ function init(){
   initDropdowns();
   trendChart = echarts.init(document.getElementById('trendChart'));
   setDateMode('week');   // 进入看板默认按最新周（本周）筛选
+  scheduleRefresh({trend:true, productRepeat:true, repeat:true});  // 初始完整渲染（含趋势图）
   window.addEventListener('resize', ()=> trendChart && trendChart.resize());
 }
 
@@ -409,7 +411,8 @@ function onDateChange(){
       WEEKS[selectedWeekIdx].dates.forEach(d=>filterState.date.add(d));
     }
   }
-  refresh();
+  // 趋势/商品复购/客户复购均不受「提单时间」筛选影响，日期变动时跳过这三块重渲染
+  scheduleRefresh({trend:false, productRepeat:false, repeat:false});
 }
 
 function toggleDateDropdown(btn){
@@ -648,7 +651,7 @@ function renderTrend(){
         symbol:'circle',symbolSize:6,
         label:{show:true,position:'top',fontSize:11,color:'#475569',formatter:p=>p.value>=10000?(p.value/10000).toFixed(1)+'万':p.value}
       }]
-    },true);
+    }, trendModeRendered!=='week');
   } else {
     title.textContent = '成交日趋势（含无成交日）';
     const dm = {};
@@ -666,8 +669,9 @@ function renderTrend(){
         areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(74,108,247,0.25)'},{offset:1,color:'rgba(74,108,247,0.02)'}])},
         symbol:'circle',symbolSize:5
       }]
-    },true);
+    }, trendModeRendered!=='day');
   }
+  trendModeRendered = dateMode;
 }
 
 function renderDetailTable(data){
@@ -733,17 +737,35 @@ function renderRepeatTable(data){
   tbody.innerHTML = html || '<tr><td colspan="6" style="text-align:center;color:#94A3B8;">当前筛选范围内暂无复购客户</td></tr>';
 }
 
-function refresh(){
+function doRefresh(opts){
+  opts = opts || {};
   const data = getFilteredData();
   renderKPIs(data);
-  renderTrend();
+  if(opts.trend !== false) renderTrend();
   renderDetailTable(data);
   renderProductTable();
-  renderProductRepeatTable();
-  renderRepeatTable(getFilteredDeptOnly());
+  if(opts.productRepeat !== false) renderProductRepeatTable();
+  if(opts.repeat !== false) renderRepeatTable(getFilteredDeptOnly());
   updateFilterSummary();
   updateDateBtnText();
   for(const key of ['dept','custAttr','category','solution','bosid']) updateDropdownBtnText(key);
+}
+
+// 用 requestAnimationFrame 合并同一帧内的多次刷新，避免快速点击时重复重算导致卡顿
+let _refreshScheduled = false;
+let _refreshOpts = null;
+function scheduleRefresh(opts){
+  _refreshOpts = opts;
+  if(_refreshScheduled) return;
+  _refreshScheduled = true;
+  requestAnimationFrame(()=>{
+    _refreshScheduled = false;
+    const o = _refreshOpts; _refreshOpts = null;
+    doRefresh(o);
+  });
+}
+function refresh(){
+  scheduleRefresh({trend:true, productRepeat:true, repeat:true});
 }
 
 function getProductData(){
