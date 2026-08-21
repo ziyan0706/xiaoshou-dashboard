@@ -346,7 +346,7 @@ const FILTER_OPTIONS = {
   bosid: PAYLOAD.bosids
 };
 
-const filterState = {date:new Set(), dept:new Set(), custAttr:new Set(), category:new Set(), solution:new Set(), bosid:new Set()};
+const filterState = {date:new Set(), dept:new Set(FILTER_OPTIONS.dept), custAttr:new Set(FILTER_OPTIONS.custAttr), category:new Set(FILTER_OPTIONS.category), solution:new Set(FILTER_OPTIONS.solution), bosid:new Set(FILTER_OPTIONS.bosid)};
 let dateMode = 'day';
 let selectedWeekIdx = -1;
 let trendChart = null;
@@ -386,7 +386,7 @@ function initDateDropdown(){
 function initDropdowns(){
   for(const key of ['dept','custAttr','category','solution','bosid']){
     const list = document.getElementById('list-'+key);
-    list.innerHTML = FILTER_OPTIONS[key].map(v=>'<div class="dropdown-item" data-val="'+v+'" onclick="toggleItem(\''+key+'\',\''+v+'\',this)"><input type="checkbox" checked><span>'+v+'</span></div>').join('');
+    list.innerHTML = FILTER_OPTIONS[key].map(v=>'<label class="dropdown-item" data-val="'+v+'"><input type="checkbox" checked onchange="toggleItem(\''+key+'\',\''+v+'\',this)"><span>'+v+'</span></label>').join('');
   }
 }
 
@@ -431,9 +431,7 @@ function searchDropdown(input, key){
   });
 }
 
-function toggleItem(key, val, item){
-  const cb = item.querySelector('input');
-  cb.checked = !cb.checked;
+function toggleItem(key, val, cb){
   if(cb.checked) filterState[key].add(val); else filterState[key].delete(val);
   refresh();
 }
@@ -448,7 +446,8 @@ function checkAll(key, checked){
 }
 
 function resetFilters(){
-  for(const key in filterState) filterState[key].clear();
+  filterState.date.clear();
+  for(const key of ['dept','custAttr','category','solution','bosid']){ filterState[key] = new Set(FILTER_OPTIONS[key]); }
   if(ALL_DATES.length){ document.getElementById('dateStart').value = ALL_DATES[0]; document.getElementById('dateEnd').value = ALL_DATES[ALL_DATES.length-1]; }
   if(WEEKS.length){ document.getElementById('weekSelect').value = String(WEEKS.length-1); selectedWeekIdx = WEEKS.length-1; }
   setDateMode('day');
