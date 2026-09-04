@@ -231,6 +231,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
       <div class="kpi-sub">客户属性=直销（去重 BOSID）</div>
       <div class="kpi-mom neutral" id="kpiDirectMoM">环比 —</div>
     </div>
+    <div class="kpi-card c8">
+      <div class="kpi-label">15天试用店铺账号数</div>
+      <div class="kpi-value" id="kpiTrial">0</div>
+      <div class="kpi-sub">客户属性=15天试用店铺（去重 BOSID）</div>
+      <div class="kpi-mom neutral" id="kpiTrialMoM">环比 —</div>
+    </div>
   </div>
 
   <div class="daily-trend-wrap">
@@ -358,7 +364,7 @@ let selectedWeekIdx = -1;
 let trendChart = null;
 let trendModeRendered = null;   // 已渲染的趋势模式，用于判断是否需要整体重建
 
-const SIX_MOM = ['kpiMerchantsMoM','kpiOrdersMoM','kpiAmountMoM','kpiChannelMoM','kpiDirectMoM'];
+const SIX_MOM = ['kpiMerchantsMoM','kpiOrdersMoM','kpiAmountMoM','kpiChannelMoM','kpiDirectMoM','kpiTrialMoM'];
 function setSixNeutral(text){ SIX_MOM.forEach(id=>{ const e=document.getElementById(id); e.className='kpi-mom neutral'; e.textContent=text; }); }
 function setRepeatMoMNeutral(){
   ['kpiRepeatMoM','kpiRepeatRateMoM'].forEach(id=>{
@@ -540,6 +546,7 @@ function computeMetrics(data){
   const amount = data.reduce((s,r)=>s+r.amount,0);
   const channelBosids = new Set(data.filter(r=>r.cust_attr==='渠道').map(r=>r.bosid));
   const directBosids = new Set(data.filter(r=>r.cust_attr==='直销').map(r=>r.bosid));
+  const trialBosids = new Set(data.filter(r=>r.cust_attr==='15天试用店铺').map(r=>r.bosid));
   const firstBosids = new Set();
   // 复购：在已框定的数据范围（含销售商品筛选范围）内，购买次数>1 的客户
   const bosidCnt = {};
@@ -552,7 +559,7 @@ function computeMetrics(data){
   }
   return {
     orders, merchants: bosids.size, amount,
-    channel: channelBosids.size, direct: directBosids.size,
+    channel: channelBosids.size, direct: directBosids.size, trial: trialBosids.size,
     first: firstBosids.size, repeat: repeatBosids.size,
     repeatRate: bosids.size ? repeatBosids.size/bosids.size*100 : 0
   };
@@ -569,6 +576,7 @@ function renderKPIs(data){
   document.getElementById('kpiRepeatRate').innerHTML = mNoDate.repeatRate.toFixed(1)+'<span style="font-size:16px;font-weight:400;color:#94A3B8;">%</span>';
   document.getElementById('kpiChannel').textContent = m.channel.toLocaleString();
   document.getElementById('kpiDirect').textContent = m.direct.toLocaleString();
+  document.getElementById('kpiTrial').textContent = m.trial.toLocaleString();
 
   let periodLabel;
   if(dateMode==='week' && selectedWeekIdx>=0){
@@ -601,6 +609,7 @@ function renderMoM(cur){
     setMom('kpiAmountMoM', curM.amount, prevM.amount, true);
     setMom('kpiChannelMoM', curM.channel, prevM.channel, true);
     setMom('kpiDirectMoM', curM.direct, prevM.direct, true);
+    setMom('kpiTrialMoM', curM.trial, prevM.trial, true);
     return;
   }
   const sel = [...filterState.date].sort();
@@ -623,6 +632,7 @@ function renderMoM(cur){
   setMom('kpiAmountMoM', curM.amount, prevM.amount, false);
   setMom('kpiChannelMoM', curM.channel, prevM.channel, false);
   setMom('kpiDirectMoM', curM.direct, prevM.direct, false);
+  setMom('kpiTrialMoM', curM.trial, prevM.trial, false);
 }
 
 function setMom(id, cur, prev, isWeek, isPct=false){
