@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-CN" data-page-node-id="2yc93IGaeBwl6hAxENU80O">
+<head data-page-node-id="r0xPohkOTU0tElecEFCwXb">
+<meta charset="UTF-8" data-page-node-id="MP3sKGtojh2BqyJgEylOzT">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="cR8oAIAZFBZYaQZTLlTDqu">
 <title>星元商业化效果看板</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
@@ -118,222 +118,222 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
 }
 </style>
 <!-- build 2026-09-11 10:21:44 --></head>
-<body>
-<div class="report-header">
-  <div class="report-header-inner">
-    <h1>星元商业化效果看板</h1>
-    <div class="title-note">数据说明：周维度为上周五 ~ 本周四，进入看板默认展示本周数据，点击「重置」即可查看 26 年累计数据。</div>
-    <div class="subtitle">
-      <span class="date-badge" id="periodBadge">数据加载中...</span>
+<body data-page-node-id="ZVr6SDQWbXNcmjhBfhvJfi">
+<div class="report-header" data-page-node-id="cPB3yTqk2PbcF09Z1a3hYV">
+  <div class="report-header-inner" data-page-node-id="ZhnxjRoIbX9BTRBuwUIg3r">
+    <h1 data-page-node-id="VFBhDzwXCQ8ukauxiAbsDS">星元商业化效果看板</h1>
+    <div class="title-note" data-page-node-id="DNkES7F3VJcGJUnDax6Gcf">数据说明：周维度为上周五 ~ 本周四，进入看板默认展示本周数据，点击「重置」即可查看 26 年累计数据。</div>
+    <div class="subtitle" data-page-node-id="AvabtvMCDykZVTqSDgR4TG">
+      <span class="date-badge" id="periodBadge" data-page-node-id="q7Buvf7zmcZqvDvXhzhgX1">数据加载中...</span>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="filter-bar" id="filterBar">
-    <div class="filter-item" data-filter="date">
-      <label>提单时间</label>
-      <button class="filter-btn" onclick="toggleDateDropdown(this)">
-        <span class="val">全部</span><span class="arrow">▾</span>
+<div class="container" data-page-node-id="hrGLYJqA1HwSiae64ihAoH">
+  <div class="filter-bar" id="filterBar" data-page-node-id="1uhrFMu0gV75RAVH356p1H">
+    <div class="filter-item" data-filter="date" data-page-node-id="HGItfGguTV7mk9uPwsMRBs">
+      <label data-page-node-id="4LQzNC6gbe6H9cYjZhtfBy">提单时间</label>
+      <button class="filter-btn" onclick="toggleDateDropdown(this)" data-page-node-id="lDgnjMq4yTTrWeOCX2sbCv">
+        <span class="val" data-page-node-id="cSzQundOgHoNgAUgjA6h6J">全部</span><span class="arrow" data-page-node-id="JANLks3g5NYQWmhPp1PMUh">▾</span>
       </button>
-      <div class="dropdown" id="dateDropdown">
-        <div class="date-dropdown">
-          <div class="date-mode-toggle">
-            <button class="dm-btn active" data-mode="day" onclick="setDateMode('day')">按日</button>
-            <button class="dm-btn" data-mode="week" onclick="setDateMode('week')">按周</button>
+      <div class="dropdown" id="dateDropdown" data-page-node-id="zyyhA3Butck49cdG1lmbIb">
+        <div class="date-dropdown" data-page-node-id="w9HC1UlzdEnNfMm3Qxlybt">
+          <div class="date-mode-toggle" data-page-node-id="mrbvGk9zUBuCvdv4Y6LA5e">
+            <button class="dm-btn active" data-mode="day" onclick="setDateMode('day')" data-page-node-id="gMsonqkFj1nYSDddMfL23C">按日</button>
+            <button class="dm-btn" data-mode="week" onclick="setDateMode('week')" data-page-node-id="r9Qs2t5aRqMsAUohnlmJuS">按周</button>
           </div>
-          <div class="date-range" id="dayRange">
-            <select class="date-sel" id="dateStart"></select>
-            <span class="tilde">~</span>
-            <select class="date-sel" id="dateEnd"></select>
+          <div class="date-range" id="dayRange" data-page-node-id="aAdrlogxpUdVAFl0vuUzVI">
+            <select class="date-sel" id="dateStart" data-page-node-id="rJIT0VLTWY9hFnRUV7pqYc"></select>
+            <span class="tilde" data-page-node-id="qgdSoipu33FgHh2jnw4SNY">~</span>
+            <select class="date-sel" id="dateEnd" data-page-node-id="0htTGTOvWR4xoFXcZUAUIB"></select>
           </div>
-          <select class="week-sel" id="weekSelect" style="display:none;"></select>
+          <select class="week-sel" id="weekSelect" style="display:none;" data-page-node-id="5v2C63888iwn4O5urOnAhH"></select>
         </div>
       </div>
     </div>
 
-    <div class="filter-item" data-filter="dept">
-      <label>销售部门</label>
-      <button class="filter-btn" onclick="toggleDropdown(this,'dept')"><span class="val">全部</span><span class="arrow">▾</span></button>
-      <div class="dropdown" id="dropdown-dept"><div class="dropdown-search"><input placeholder="搜索" oninput="searchDropdown(this,'dept')"></div><div class="dropdown-list" id="list-dept"></div><div class="dropdown-actions"><a onclick="checkAll('dept',true)">全选</a><a onclick="checkAll('dept',false)">清空</a></div></div>
+    <div class="filter-item" data-filter="dept" data-page-node-id="oBMTT0yVoqPJKAKYYQpIZT">
+      <label data-page-node-id="pfU0HR5gThstU1UpWjfAn3">销售部门</label>
+      <button class="filter-btn" onclick="toggleDropdown(this,'dept')" data-page-node-id="06oiX2bCS91LKFdbjRbGoL"><span class="val" data-page-node-id="GIxj6KhoHQAcZ3TRFlO3E5">全部</span><span class="arrow" data-page-node-id="93Ddd2CO1ZlqckMiRDBDIG">▾</span></button>
+      <div class="dropdown" id="dropdown-dept" data-page-node-id="JponYGvCMdfPP2SWhZNa3N"><div class="dropdown-search" data-page-node-id="x4rEzsAiR3FgU50MVRQoY6"><input placeholder="搜索" oninput="searchDropdown(this,'dept')" data-page-node-id="t5DNP85w9ujta7gPye3kBm"></div><div class="dropdown-list" id="list-dept" data-page-node-id="Ybm5ahYZlHgPSlQRhTQWYY"></div><div class="dropdown-actions" data-page-node-id="rgzRNN09vHLjBWSNcHbZ1P"><a onclick="checkAll('dept',true)" data-page-node-id="eapL1NtrLnlQsKmUxTmtsz">全选</a><a onclick="checkAll('dept',false)" data-page-node-id="wDpTp1egnkRbHekHkhXW6P">清空</a></div></div>
     </div>
 
-    <div class="filter-item" data-filter="custAttr">
-      <label>客户属性</label>
-      <button class="filter-btn" onclick="toggleDropdown(this,'custAttr')"><span class="val">全部</span><span class="arrow">▾</span></button>
-      <div class="dropdown" id="dropdown-custAttr"><div class="dropdown-list" id="list-custAttr"></div><div class="dropdown-actions"><a onclick="checkAll('custAttr',true)">全选</a><a onclick="checkAll('custAttr',false)">清空</a></div></div>
+    <div class="filter-item" data-filter="custAttr" data-page-node-id="WLTO4BoZ2dGuGuw0E1BMNW">
+      <label data-page-node-id="q389DBMCXfv6zWK8YKYw9H">客户属性</label>
+      <button class="filter-btn" onclick="toggleDropdown(this,'custAttr')" data-page-node-id="oa9gwnLU6iSAoop24DByvO"><span class="val" data-page-node-id="t3mrLY5CNBQOIrAEg6SRV6">全部</span><span class="arrow" data-page-node-id="PtGbaVqUcfTiEF2ozCEsuQ">▾</span></button>
+      <div class="dropdown" id="dropdown-custAttr" data-page-node-id="CzFbl5YFkLdvHarHs4zjqR"><div class="dropdown-list" id="list-custAttr" data-page-node-id="cPKfEF7fUt00fXM92GqBi5"></div><div class="dropdown-actions" data-page-node-id="ITmTpynly7QuP8vh6wQsFy"><a onclick="checkAll('custAttr',true)" data-page-node-id="VrBmHaqE96PPBD7mPf6Qql">全选</a><a onclick="checkAll('custAttr',false)" data-page-node-id="LiK5QtX45NMl4rLtQrBfcN">清空</a></div></div>
     </div>
 
-    <div class="filter-item" data-filter="category">
-      <label>销售商品</label>
-      <button class="filter-btn" onclick="toggleDropdown(this,'category')"><span class="val">全部</span><span class="arrow">▾</span></button>
-      <div class="dropdown" id="dropdown-category"><div class="dropdown-search"><input placeholder="搜索" oninput="searchDropdown(this,'category')"></div><div class="dropdown-list" id="list-category"></div><div class="dropdown-actions"><a onclick="checkAll('category',true)">全选</a><a onclick="checkAll('category',false)">清空</a></div></div>
+    <div class="filter-item" data-filter="category" data-page-node-id="hRkFK5TSYr1au22dJDsnNI">
+      <label data-page-node-id="t2yBOEodI4s8kfX3AvCtD5">销售商品</label>
+      <button class="filter-btn" onclick="toggleDropdown(this,'category')" data-page-node-id="jpn2m4TOzs3gqh0WUmrYyK"><span class="val" data-page-node-id="bb5e8DWBIYPoZo7GxqfFNo">全部</span><span class="arrow" data-page-node-id="Zpg1jcrkJYqEK5d25Al56y">▾</span></button>
+      <div class="dropdown" id="dropdown-category" data-page-node-id="KrzcTE1zdplG8As7SBRmzF"><div class="dropdown-search" data-page-node-id="aiewpxNwix8Ni8gMwyVQoC"><input placeholder="搜索" oninput="searchDropdown(this,'category')" data-page-node-id="tYZQCD2tLe0u5vNZnyi6kK"></div><div class="dropdown-list" id="list-category" data-page-node-id="uLQFqqkynfL1a6MFjcvAzY"></div><div class="dropdown-actions" data-page-node-id="TqnGttqYLBppPzG6i4JbYa"><a onclick="checkAll('category',true)" data-page-node-id="cUHXkTtvhC6P0E3uvhNFCa">全选</a><a onclick="checkAll('category',false)" data-page-node-id="7JFAbRlIlX02YyAlKPvzQZ">清空</a></div></div>
     </div>
 
-    <div class="filter-item" data-filter="solution">
-      <label>解决方案</label>
-      <button class="filter-btn" onclick="toggleDropdown(this,'solution')"><span class="val">全部</span><span class="arrow">▾</span></button>
-      <div class="dropdown" id="dropdown-solution"><div class="dropdown-search"><input placeholder="搜索" oninput="searchDropdown(this,'solution')"></div><div class="dropdown-list" id="list-solution"></div><div class="dropdown-actions"><a onclick="checkAll('solution',true)">全选</a><a onclick="checkAll('solution',false)">清空</a></div></div>
+    <div class="filter-item" data-filter="solution" data-page-node-id="UkadfDfWMJX1aXo8Px0oPq">
+      <label data-page-node-id="GG8FEln8qrLICUNzxs0RJF">解决方案</label>
+      <button class="filter-btn" onclick="toggleDropdown(this,'solution')" data-page-node-id="9BvmOdts3Y5jyYYuYjJDCT"><span class="val" data-page-node-id="3JzfBWAJLg0KzdAsACDLqu">全部</span><span class="arrow" data-page-node-id="HPg0ctbuPzqLFHGKTh6ziG">▾</span></button>
+      <div class="dropdown" id="dropdown-solution" data-page-node-id="frgOutzLMOdQ8dAQYuP8qJ"><div class="dropdown-search" data-page-node-id="9Ld5iYqbyklZXMWvtCGZo9"><input placeholder="搜索" oninput="searchDropdown(this,'solution')" data-page-node-id="LFkpu78yjB25bjyZQ3Wm8o"></div><div class="dropdown-list" id="list-solution" data-page-node-id="hAWn2is5kKPUdUKDWVzuUB"></div><div class="dropdown-actions" data-page-node-id="pxbmB3SfvYdol08vhm1jbH"><a onclick="checkAll('solution',true)" data-page-node-id="slqDYVyp5EsKV7FsZ861Z2">全选</a><a onclick="checkAll('solution',false)" data-page-node-id="bAaaKASFdQEWf8k9UFbLei">清空</a></div></div>
     </div>
 
-    <div class="filter-item" data-filter="bosid">
-      <label>BOSID</label>
-      <button class="filter-btn" onclick="toggleDropdown(this,'bosid')"><span class="val">全部</span><span class="arrow">▾</span></button>
-      <div class="dropdown" id="dropdown-bosid"><div class="dropdown-search"><input placeholder="搜索" oninput="searchDropdown(this,'bosid')"></div><div class="dropdown-list" id="list-bosid"></div><div class="dropdown-actions"><a onclick="checkAll('bosid',true)">全选</a><a onclick="checkAll('bosid',false)">清空</a></div></div>
+    <div class="filter-item" data-filter="bosid" data-page-node-id="Apy4FIkdeSzG2zrfigpqwy">
+      <label data-page-node-id="HAFvbjtvqwFCDo29WRZ27T">BOSID</label>
+      <button class="filter-btn" onclick="toggleDropdown(this,'bosid')" data-page-node-id="wuQfGgX1qfaUIh4d8zBtYN"><span class="val" data-page-node-id="nqIoCMddf1ecDmMTmaDtEQ">全部</span><span class="arrow" data-page-node-id="QNKyUjoys8sghEnY212clW">▾</span></button>
+      <div class="dropdown" id="dropdown-bosid" data-page-node-id="gkYMMOAFe8ZEtGX5oEL375"><div class="dropdown-search" data-page-node-id="5YS9mbhxrMgSfQhmGLQ8QE"><input placeholder="搜索" oninput="searchDropdown(this,'bosid')" data-page-node-id="DOtXN8XmDAFHyKdwDGiEAF"></div><div class="dropdown-list" id="list-bosid" data-page-node-id="MWVjojl8s6Rji5z0E9ZnHA"></div><div class="dropdown-actions" data-page-node-id="2JfvJK9AhdmIBvD7ceAs61"><a onclick="checkAll('bosid',true)" data-page-node-id="v355BCj0Nh4Ii4MRDbkU2N">全选</a><a onclick="checkAll('bosid',false)" data-page-node-id="yheXgDjMsqFrXCkU1oPDxF">清空</a></div></div>
     </div>
 
-    <div class="filter-actions">
-      <div class="filter-summary" id="filterSummary"></div>
-      <button class="reset-btn" onclick="resetFilters()">重置</button>
+    <div class="filter-actions" data-page-node-id="rP5qKCrOzurWfsOyNRpsnT">
+      <div class="filter-summary" id="filterSummary" data-page-node-id="oJHO38EDNEW7vm8BDTj6J8"></div>
+      <button class="reset-btn" onclick="resetFilters()" data-page-node-id="ECUV5AdYu5dFCzeBxc3vlW">重置</button>
     </div>
   </div>
 
-  <div class="kpi-grid">
-    <div class="kpi-card c1">
-      <div class="kpi-label">购买账号数</div>
-      <div class="kpi-value" id="kpiMerchants">0</div>
-      <div class="kpi-sub">去重 BOSID</div>
-      <div class="kpi-mom neutral" id="kpiMerchantsMoM">环比 —</div>
+  <div class="kpi-grid" data-page-node-id="cg34LjA2eq2GJ2sVWt2eWj">
+    <div class="kpi-card c1" data-page-node-id="jt5liOViRm20szoCgWk16n">
+      <div class="kpi-label" data-page-node-id="87N7WKuSk6C7gx0smioqBQ">购买账号数</div>
+      <div class="kpi-value" id="kpiMerchants" data-page-node-id="VnVhqtt98ObGVYxZHASYEu">0</div>
+      <div class="kpi-sub" data-page-node-id="ar1hKxCiRSV6fq3nvFKqGE">去重 BOSID</div>
+      <div class="kpi-mom neutral" id="kpiMerchantsMoM" data-page-node-id="8t67dpMCrxMQhkAd9M1PXn">环比 —</div>
     </div>
-    <div class="kpi-card c2">
-      <div class="kpi-label">订单数</div>
-      <div class="kpi-value" id="kpiOrders">0</div>
-      <div class="kpi-sub">子订单数</div>
-      <div class="kpi-mom neutral" id="kpiOrdersMoM">环比 —</div>
+    <div class="kpi-card c2" data-page-node-id="xgwEAtBCPp4vWSZFDYCPXC">
+      <div class="kpi-label" data-page-node-id="awsAhEJKAX5dpxLBr9FoPu">订单数</div>
+      <div class="kpi-value" id="kpiOrders" data-page-node-id="YwPN7kmhNd6iaqnHzctK8o">0</div>
+      <div class="kpi-sub" data-page-node-id="ty9stoFafYToGIIGugKK2N">子订单数</div>
+      <div class="kpi-mom neutral" id="kpiOrdersMoM" data-page-node-id="ifB3zXDGoB5efV47kX2hUD">环比 —</div>
     </div>
-    <div class="kpi-card c3">
-      <div class="kpi-label">订单金额</div>
-      <div class="kpi-value" id="kpiAmount">0</div>
-      <div class="kpi-sub">订单金额合计</div>
-      <div class="kpi-mom neutral" id="kpiAmountMoM">环比 —</div>
+    <div class="kpi-card c3" data-page-node-id="2rx35nkNX5j8tDHQFdkV07">
+      <div class="kpi-label" data-page-node-id="tNRGa0iLGQfc6CXwQGCGQe">订单金额</div>
+      <div class="kpi-value" id="kpiAmount" data-page-node-id="ulOVkw2HLHoXFve56dFn75">0</div>
+      <div class="kpi-sub" data-page-node-id="uWUeOcTrHULl9FVEmRNBBU">订单金额合计</div>
+      <div class="kpi-mom neutral" id="kpiAmountMoM" data-page-node-id="342btDm8LAaowfFt0RIHb1">环比 —</div>
     </div>
-    <div class="kpi-card c4">
-      <div class="kpi-label">复购账号数</div>
-      <div class="kpi-value" id="kpiRepeat">0</div>
-      <div class="kpi-sub">历史存在多次购买（不受时间筛选影响）</div>
-      <div class="kpi-mom neutral" id="kpiRepeatMoM">环比 —</div>
+    <div class="kpi-card c4" data-page-node-id="W7zPSDXM6eHr65UaVtbjOA">
+      <div class="kpi-label" data-page-node-id="FqZBSy7l3ftieyEurIIejC">复购账号数</div>
+      <div class="kpi-value" id="kpiRepeat" data-page-node-id="iqrrXInhegWdSgY8A8gCfO">0</div>
+      <div class="kpi-sub" data-page-node-id="Vowin9JbPBJApAVDthswRl">历史存在多次购买（不受时间筛选影响）</div>
+      <div class="kpi-mom neutral" id="kpiRepeatMoM" data-page-node-id="xDAEDmslub4dWflbJ6O9kx">环比 —</div>
     </div>
-    <div class="kpi-card c5">
-      <div class="kpi-label">复购率</div>
-      <div class="kpi-value" id="kpiRepeatRate">0%</div>
-      <div class="kpi-sub">复购账号 / 购买账号（按筛选范围，不受时间筛选影响）</div>
-      <div class="kpi-mom neutral" id="kpiRepeatRateMoM">环比 —</div>
+    <div class="kpi-card c5" data-page-node-id="vHyjC5E9YQFHUZc24JJ1DC">
+      <div class="kpi-label" data-page-node-id="sjClubcPp6YbA5DH3Urg8x">复购率</div>
+      <div class="kpi-value" id="kpiRepeatRate" data-page-node-id="j8UXcQp5WmIShvlBZ9mttE">0%</div>
+      <div class="kpi-sub" data-page-node-id="UZ5FqPpAlD0YkflZf7eP33">复购账号 / 购买账号（按筛选范围，不受时间筛选影响）</div>
+      <div class="kpi-mom neutral" id="kpiRepeatRateMoM" data-page-node-id="z8Va4Ahy14WtJngZFaqtL0">环比 —</div>
     </div>
-    <div class="kpi-card c6">
-      <div class="kpi-label">渠道账号数</div>
-      <div class="kpi-value" id="kpiChannel">0</div>
-      <div class="kpi-sub">客户属性=渠道（去重 BOSID）</div>
-      <div class="kpi-mom neutral" id="kpiChannelMoM">环比 —</div>
+    <div class="kpi-card c6" data-page-node-id="WpweoHMql6D674r6YiHLDI">
+      <div class="kpi-label" data-page-node-id="WhdHl6NmAEtB4L1bsHDVS7">渠道账号数</div>
+      <div class="kpi-value" id="kpiChannel" data-page-node-id="t46KDPT2SaaaYCVeshggLK">0</div>
+      <div class="kpi-sub" data-page-node-id="kOIrYajRtYbpmBydhHfCIW">客户属性=渠道（去重 BOSID）</div>
+      <div class="kpi-mom neutral" id="kpiChannelMoM" data-page-node-id="3Nrs1v8SdGQNDEpgQE1HCm">环比 —</div>
     </div>
-    <div class="kpi-card c7">
-      <div class="kpi-label">直销账号数</div>
-      <div class="kpi-value" id="kpiDirect">0</div>
-      <div class="kpi-sub">客户属性=直销（去重 BOSID）</div>
-      <div class="kpi-mom neutral" id="kpiDirectMoM">环比 —</div>
+    <div class="kpi-card c7" data-page-node-id="V9D4GtAov1qhARefKnzLyV">
+      <div class="kpi-label" data-page-node-id="CBNZpdLSJ8xeBIvYzf1s6E">直销账号数</div>
+      <div class="kpi-value" id="kpiDirect" data-page-node-id="XNHy0X0ThM3hZTXOBaeDcz">0</div>
+      <div class="kpi-sub" data-page-node-id="BhB5LVvvlDe9y1CE0sHQ3Z">客户属性=直销（去重 BOSID）</div>
+      <div class="kpi-mom neutral" id="kpiDirectMoM" data-page-node-id="b2lIApC3oQpZQSDL54ZqSJ">环比 —</div>
     </div>
-    <div class="kpi-card c8">
-      <div class="kpi-label">15天试用店铺账号数</div>
-      <div class="kpi-value" id="kpiTrial">0</div>
-      <div class="kpi-sub">客户属性=15天试用店铺（去重 BOSID）</div>
-      <div class="kpi-mom neutral" id="kpiTrialMoM">环比 —</div>
+    <div class="kpi-card c8" data-page-node-id="HiwFnFMmvEwMzPDsCdingl">
+      <div class="kpi-label" data-page-node-id="8GHJ2Hl722dralCi8JMUtI">15天试用店铺账号数</div>
+      <div class="kpi-value" id="kpiTrial" data-page-node-id="3hoo0brYFTGJHpEEWaurVB">0</div>
+      <div class="kpi-sub" data-page-node-id="4XaJyt1OgbmhuTm7RILnEH">客户属性=15天试用店铺（去重 BOSID）</div>
+      <div class="kpi-mom neutral" id="kpiTrialMoM" data-page-node-id="4qBaQFXaVaylGRGTM4cDDS">环比 —</div>
     </div>
   </div>
 
-  <div class="daily-trend-wrap">
-    <div class="trend-title" id="trendTitle">成交趋势</div>
-    <div class="trend-chart" id="trendChart"></div>
+  <div class="daily-trend-wrap" data-page-node-id="p9uWBO2r0CaTZaDtQd6htN">
+    <div class="trend-title" id="trendTitle" data-page-node-id="0Me72xe5Qt3nSTbuYoN2kv">成交趋势</div>
+    <div class="trend-chart" id="trendChart" data-page-node-id="LlGyg92BFuh64YOBnwYkug"></div>
   </div>
 
-  <div class="product-row">
-    <div class="section product-col">
-      <div class="section-head">
-        <div class="section-title">商品购买明细</div>
-        <div class="section-badge" id="productBadge">0 项</div>
+  <div class="product-row" data-page-node-id="F3Ivtf8iieTRotyXOnI9DP">
+    <div class="section product-col" data-page-node-id="x6X9n4B2t13cDfXHaCQLAz">
+      <div class="section-head" data-page-node-id="3tZBMHDwJIzrVseauFlGy3">
+        <div class="section-title" data-page-node-id="s5vHURyjGcklR0mAQMBBen">商品购买明细</div>
+        <div class="section-badge" id="productBadge" data-page-node-id="jxAcVTMhKL6q6MFp4KHuEP">0 项</div>
       </div>
-      <div class="section-desc">①基于当前筛选范围，以销售商品为维度汇总订单数量、订单金额、购买账号数。<br/>②wai高级版、文字包、图片包为历史成交商品，星元上线后不会再售卖。</div>
-      <div style="overflow-x:auto;">
-        <table class="data-table" id="productTable">
-          <thead>
-            <tr>
-              <th>销售商品</th>
-              <th class="num">订单数量</th>
-              <th class="num">订单金额</th>
-              <th class="num">购买账号数</th>
+      <div class="section-desc" data-page-node-id="K0vO1xy2emArtiyOdMkVl8">①基于当前筛选范围，以销售商品为维度汇总订单数量、订单金额、购买账号数。<br data-page-node-id="FZ1QSi3M1vaOHM2nLJz4wV"/>②wai高级版、文字包、图片包为历史成交商品，星元上线后不会再售卖。</div>
+      <div style="overflow-x:auto;" data-page-node-id="qURNlZWHk1Coq0T9KaOURz">
+        <table class="data-table" id="productTable" data-page-node-id="uDBInGAbgvZDVOnws57bir">
+          <thead data-page-node-id="JmoUtoXIJFRwQCY1Te4SdX">
+            <tr data-page-node-id="fy6WXehDjg6lMeKuZtnHWF">
+              <th data-page-node-id="3C1eFcEXlOFhwUFKRQVizU">销售商品</th>
+              <th class="num" data-page-node-id="Y3pL0ntAR2q0CVt4XyOJ6v">订单数量</th>
+              <th class="num" data-page-node-id="BwnG9c7USaFVRbxR5srSQg">订单金额</th>
+              <th class="num" data-page-node-id="yzq4Zk3YlSsHqTqXEQQPaM">购买账号数</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody data-page-node-id="6p2ycbvSuQgzif5dxJzjZy"></tbody>
         </table>
       </div>
     </div>
 
-    <div class="section product-col">
-      <div class="section-head">
-        <div class="section-title">商品复购明细</div>
-        <div class="section-badge" id="productRepeatBadge">0 项</div>
+    <div class="section product-col" data-page-node-id="X2EWBDVLw4ByUccnp8b3Kf">
+      <div class="section-head" data-page-node-id="WhhA4EvE0OhW53VVAD0oCZ">
+        <div class="section-title" data-page-node-id="qFi4iVrare9szsM3yABCUf">商品复购明细</div>
+        <div class="section-badge" id="productRepeatBadge" data-page-node-id="sFqJ08yAiEwkbp2kJLcXqc">0 项</div>
       </div>
-      <div class="section-desc">①以销售商品为维度展示累计复购账号数与累计复购率，复购口径为该商品范围内同一账号购买次数&gt;1。<br/>②累计复购账号数与累计复购率不受时间筛选影响，计算公式：累计复购账号数 ÷ 购买账号数 × 100%。<br/>③7天限量星币卡不支持复购，已从本表剔除。</div>
-      <div style="overflow-x:auto;">
-        <table class="data-table" id="productRepeatTable">
-          <thead>
-            <tr>
-              <th>销售商品</th>
-              <th class="num">累计复购账号数</th>
-              <th class="num">累计复购率</th>
+      <div class="section-desc" data-page-node-id="UCcEFdzwYhaTTvCQiM5vkn">①以销售商品为维度展示累计复购账号数与累计复购率，复购口径为该商品范围内同一账号购买次数&gt;1。<br data-page-node-id="pQDldfT46Uh9WNvT7TGDpg"/>②累计复购账号数与累计复购率不受时间筛选影响，计算公式：累计复购账号数 ÷ 购买账号数 × 100%。<br data-page-node-id="JrzTaCVNOaPqtwN1YQxufC"/>③7天限量星币卡不支持复购，已从本表剔除。</div>
+      <div style="overflow-x:auto;" data-page-node-id="mT8d0W01xVm9BHlE3SHmfe">
+        <table class="data-table" id="productRepeatTable" data-page-node-id="bXPJLGJgUyNz6PCkum0Cxb">
+          <thead data-page-node-id="6Y2vhhJBLooSPkkL3EHLAY">
+            <tr data-page-node-id="K8V1QuzIUlfRYKsiIDanq9">
+              <th data-page-node-id="g18bYonv3F7ttHAM9nhGsq">销售商品</th>
+              <th class="num" data-page-node-id="ByWQnt0UuZeWAH89CqUHBq">累计复购账号数</th>
+              <th class="num" data-page-node-id="fLBn0w4KzN6SrwOfTLEUGD">累计复购率</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody data-page-node-id="QLUnftKz4001Q3JQlMOLGH"></tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-head">
-      <div class="section-title">销售订单明细</div>
-      <div class="section-badge" id="detailBadge">0 条</div>
+  <div class="section" data-page-node-id="BfX8hSXePl07qG3ly2oOpd">
+    <div class="section-head" data-page-node-id="wPtCCVN2ZDpyzimuuDUZca">
+      <div class="section-title" data-page-node-id="u38nvrwq8mFKEXT5is0SOt">销售订单明细</div>
+      <div class="section-badge" id="detailBadge" data-page-node-id="e1kgeKUWTwmSrUdzEmGrHf">0 条</div>
     </div>
-    <div class="section-desc">展示筛选范围内的订单记录，销售部门取「部门」列，店铺名称取「签约主体」，金额取「成交价格」，时间口径为「提单时间」。</div>
-    <div style="overflow-x:auto;">
-      <table class="data-table" id="detailTable">
-        <thead>
-          <tr>
-            <th>销售部门</th>
-            <th>店铺名称</th>
-            <th>销售商品</th>
-            <th>提单时间</th>
-            <th class="num">订单金额</th>
-            <th>解决方案</th>
+    <div class="section-desc" data-page-node-id="ohfEwBaUWxwfaQwEdANyVx">展示筛选范围内的订单记录，销售部门取「部门」列，店铺名称取「签约主体」，金额取「成交价格」，时间口径为「提单时间」。</div>
+    <div style="overflow-x:auto;" data-page-node-id="Nvdyp9eYshCpkNtiDAEljV">
+      <table class="data-table" id="detailTable" data-page-node-id="NVd6YXe7szROXxh6D58xZI">
+        <thead data-page-node-id="2MiDDee8wQGVodm0JFu2mD">
+          <tr data-page-node-id="7QnM9CPWxx58BQ4PP3oGaK">
+            <th data-page-node-id="dd0eZ5jtgEB4w6QQWv8PGF">销售部门</th>
+            <th data-page-node-id="o9f78FCrUYyEwvdgY7izyn">店铺名称</th>
+            <th data-page-node-id="ETADoABVdSkZ3IXqTlx6Gg">销售商品</th>
+            <th data-page-node-id="xYj5C5tQOnVyKfwLAPEsk0">提单时间</th>
+            <th class="num" data-page-node-id="GqiQYtYbVl1ZGOK14HFTjL">订单金额</th>
+            <th data-page-node-id="GxoKh8jo4bQfkiYn08EVs8">解决方案</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody data-page-node-id="YRRSVBnwChFXvEiPDSRq7C"></tbody>
       </table>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-head">
-      <div class="section-title">客户复购明细</div>
-      <div class="section-badge" id="repeatBadge">0 个客户</div>
+  <div class="section" data-page-node-id="8OvH4Ev5RmXrByGDPZWIws">
+    <div class="section-head" data-page-node-id="217HCnGe7HsdqOgzMkcy7H">
+      <div class="section-title" data-page-node-id="MAFq3K8stcUYwD1E2IElDr">客户复购明细</div>
+      <div class="section-badge" id="repeatBadge" data-page-node-id="HwK831z2bSthxWQesg90GC">0 个客户</div>
     </div>
-    <div class="section-desc">①以账号为维度展示首购与复购情况。仅展示存在复购（订单数&gt;1）的账号。<br/>②首购商品 / 首购时间为该账号最早（按提单时间）购买的商品与时间。</div>
-    <div style="overflow-x:auto;">
-      <table class="data-table" id="repeatTable">
-        <thead>
-          <tr>
-            <th>销售部门</th>
-            <th>店铺名称</th>
-            <th>首购商品</th>
-            <th>首购时间</th>
-            <th>复购商品（次数）</th>
-            <th>复购时间</th>
+    <div class="section-desc" data-page-node-id="QojS5jBIekuJaVuBoqxRsD">①以账号为维度展示首购与复购情况。仅展示存在复购（订单数&gt;1）的账号。<br data-page-node-id="q1VgrmW3WPnKDptokrW8y3"/>②首购商品 / 首购时间为该账号最早（按提单时间）购买的商品与时间。</div>
+    <div style="overflow-x:auto;" data-page-node-id="MYfKzVaobdmqGUQbatctTL">
+      <table class="data-table" id="repeatTable" data-page-node-id="UtkZ9ihXh8TGGbEzU2N0zr">
+        <thead data-page-node-id="7IipSRjJG4BNVk1cHA42FP">
+          <tr data-page-node-id="i7zBmkGWe1RUm14D10OHoj">
+            <th data-page-node-id="bifSeOaR83tOYJSWxwbbBz">销售部门</th>
+            <th data-page-node-id="tIGnUWe2GESCH1Whik0cP3">店铺名称</th>
+            <th data-page-node-id="mExZQXTjGHkWK6i0zagFTm">首购商品</th>
+            <th data-page-node-id="xm9hbAX2xuxOTAeb75TUTO">首购时间</th>
+            <th data-page-node-id="VmHYZNZ4A2XJ4QldZh5W9s">复购商品（次数）</th>
+            <th data-page-node-id="I0CAjsJFdEnHie1TGF7geS">复购时间</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody data-page-node-id="k9ZXbIlXg2M43BK1jlTQp0"></tbody>
       </table>
     </div>
   </div>
 
-  <div class="footer">星元商业化效果看板 | 自动生成</div>
+  <div class="footer" data-page-node-id="CkD6OlqYvsKEE1UWrP5fH3">星元商业化效果看板 | 自动生成</div>
 </div>
 
 <script>
